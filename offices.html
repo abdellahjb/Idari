@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bureaux — إداري Idari</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="idari-breadcrumb">
+  <div class="container">
+    <a href="index.html" id="bc-home">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current" id="bc-current">Bureaux</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-icon">🗺</div>
+    <div class="section-tag green mb-2" id="ph-tag">Bureaux</div>
+    <h1 id="ph-title">Trouver un bureau</h1>
+    <p id="ph-desc">Localisez le bureau le plus proche dans votre ville pour effectuer vos démarches.</p>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <!-- City Tabs -->
+    <div class="mb-4">
+      <div class="city-tabs" id="city-tabs">
+        <button class="city-tab active" id="tab-casa" onclick="setCity('casablanca',this)">Casablanca</button>
+        <button class="city-tab" id="tab-rabat" onclick="setCity('rabat',this)">Rabat</button>
+        <button class="city-tab" id="tab-marra" onclick="setCity('marrakech',this)">Marrakech</button>
+        <button class="city-tab" id="tab-fes" onclick="setCity('fes',this)">Fès</button>
+      </div>
+    </div>
+    <!-- Filter by org -->
+    <div class="d-flex gap-2 flex-wrap mb-4" id="org-filters">
+      <button class="btn-filter active" onclick="setOrgFilter('all',this)" id="filt-all">Tous</button>
+      <button class="btn-filter" onclick="setOrgFilter('CNSS',this)">CNSS</button>
+      <button class="btn-filter" onclick="setOrgFilter('ANAPEC',this)">ANAPEC</button>
+      <button class="btn-filter" onclick="setOrgFilter('ONCF',this)">ONCF</button>
+      <button class="btn-filter" onclick="setOrgFilter('CRI',this)">CRI</button>
+      <button class="btn-filter" onclick="setOrgFilter('Wilaya',this)" id="filt-wilaya">Wilaya</button>
+      <button class="btn-filter" onclick="setOrgFilter('Préfecture',this)" id="filt-pref">Préfecture</button>
+    </div>
+    <div class="row g-3" id="offices-grid"></div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<style>
+.btn-filter {
+  padding: 6px 16px; border-radius: 20px; font-size: .8rem; font-weight: 500;
+  border: 1.5px solid var(--border); background: var(--white); color: var(--ink-mid);
+  cursor: pointer; transition: all .18s; font-family: var(--font-en);
+}
+body.rtl .btn-filter { font-family: var(--font-ar); }
+.btn-filter:hover { border-color: var(--red); color: var(--red); }
+.btn-filter.active { background: var(--red); color: var(--white); border-color: var(--red); }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="idari.js"></script>
+<script>
+initLang();
+let currentCity   = 'casablanca';
+let currentOrgFilter = 'all';
+
+function setCity(city, btn) {
+  currentCity = city;
+  document.querySelectorAll('.city-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderOffices();
+}
+
+function setOrgFilter(org, btn) {
+  currentOrgFilter = org;
+  document.querySelectorAll('.btn-filter').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderOffices();
+}
+
+function renderOffices() {
+  const l = getLang();
+  const t = T[l];
+  const list = (offices[currentCity] || []).filter(o =>
+    currentOrgFilter === 'all' || o.org === currentOrgFilter
+  );
+  const grid = document.getElementById('offices-grid');
+  if (!list.length) {
+    grid.innerHTML = `<div class="col-12"><p class="text-muted">${l==='fr'?'Aucun bureau trouvé.':'لم يُعثر على مكتب.'}</p></div>`;
+    return;
+  }
+  grid.innerHTML = list.map(o => `
+    <div class="col-sm-6 col-lg-4 fade-up">
+      <div class="office-card h-100">
+        <div class="office-org">${o.org}</div>
+        <div class="office-name">${o.name}</div>
+        <div class="office-row"><span>📍</span><span>${o.addr}</span></div>
+        <div class="office-row"><span>📞</span><span>${o.tel}</span></div>
+        <div class="office-row"><span>🕘</span><span>${o.hours}</span></div>
+        <button class="map-link" onclick="window.open('${o.map}','_blank')">${t.mapBtn}</button>
+      </div>
+    </div>`).join('');
+}
+
+function applyLang(l) {
+  const t = T[l];
+  document.title = t.officesTitle + ' — إداري Idari';
+  document.getElementById('bc-home').textContent    = t.breadHome;
+  document.getElementById('bc-current').textContent = t.officesTitle;
+  document.getElementById('ph-tag').textContent     = t.officesTag;
+  document.getElementById('ph-title').textContent   = t.officesTitle;
+  document.getElementById('ph-desc').textContent    = t.officesSub;
+
+  document.getElementById('tab-casa').textContent  = t.cityCasa;
+  document.getElementById('tab-rabat').textContent = t.cityRabat;
+  document.getElementById('tab-marra').textContent = t.cityMarra;
+  document.getElementById('tab-fes').textContent   = t.cityFes;
+
+  const filterAll    = document.getElementById('filt-all');
+  const filterWilaya = document.getElementById('filt-wilaya');
+  const filterPref   = document.getElementById('filt-pref');
+  if (filterAll)    filterAll.textContent    = l==='fr'?'Tous':'الكل';
+  if (filterWilaya) filterWilaya.textContent = l==='fr'?'Wilaya':'الولاية';
+  if (filterPref)   filterPref.textContent   = l==='fr'?'Préfecture':'العمالة';
+
+  document.getElementById('nav-placeholder').innerHTML    = buildNav('offices');
+  document.getElementById('footer-placeholder').innerHTML = buildFooter();
+  const langToggle = document.getElementById('lang-toggle');
+  if (langToggle) langToggle.textContent = l === 'fr' ? 'عربي' : 'Français';
+  renderOffices();
+}
+
+applyLang(getLang());
+</script>
+</body>
+</html>

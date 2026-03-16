@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>transport — إداري Idari</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- BREADCRUMB -->
+<div class="idari-breadcrumb">
+  <div class="container">
+    <a href="index.html" id="bc-home">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current" id="bc-current">transport</span>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-icon" id="ph-icon">🪪</div>
+    <div class="section-tag mb-2" id="ph-tag">transport</div>
+    <h1 id="ph-title">Procédures — transport</h1>
+    <p id="ph-desc">Passeport, Carte Nationale d'Identité, actes d'état civil et certificats.</p>
+  </div>
+</div>
+
+<!-- PROCEDURES -->
+<section class="py-5">
+  <div class="container">
+    <div class="row" id="procs-grid">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div class="modal fade" id="procModal" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <div style="font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)" id="modal-org"></div>
+          <h5 class="modal-title mb-0" id="modal-title"></h5>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="idari.js"></script>
+<script>
+const PAGE_CAT = 'transport';
+const PAGE_META = catMeta[PAGE_CAT];
+
+initLang();
+
+function applyLang(l) {
+  const t  = T[l];
+  const m  = PAGE_META[l];
+  document.title = m.label + ' — إداري Idari';
+  document.getElementById('bc-home').textContent    = t.breadHome;
+  document.getElementById('bc-current').textContent = m.label;
+  document.getElementById('ph-icon').textContent    = PAGE_META.icon;
+  document.getElementById('ph-tag').textContent     = m.label;
+  document.getElementById('ph-title').textContent   = (l==='fr'?'Procédures — ':'الإجراءات — ') + m.label;
+  document.getElementById('ph-desc').textContent    = m.desc;
+  document.getElementById('procs-grid').innerHTML   = buildProcCards(PAGE_CAT);
+  document.getElementById('nav-placeholder').innerHTML    = buildNav(PAGE_CAT);
+  document.getElementById('footer-placeholder').innerHTML = buildFooter();
+  const langToggle = document.getElementById('lang-toggle');
+  if (langToggle) langToggle.textContent = l === 'fr' ? 'عربي' : 'Français';
+}
+
+applyLang(getLang());
+</script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formulaires — إداري Idari</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="idari-breadcrumb">
+  <div class="container">
+    <a href="index.html" id="bc-home">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current" id="bc-current">Formulaires</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-icon">📋</div>
+    <div class="section-tag gold mb-2" id="ph-tag">Téléchargements</div>
+    <h1 id="ph-title">Formulaires officiels</h1>
+    <p id="ph-desc">Téléchargez les formulaires officiels à imprimer avant votre visite au bureau.</p>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <!-- search -->
+    <div class="mb-4" style="max-width:420px">
+      <input type="text" class="form-control" id="form-search" placeholder="Rechercher un formulaire…" oninput="renderForms()" style="border-radius:8px;border:1px solid var(--border);padding:10px 15px;font-size:.88rem;background:var(--white)">
+    </div>
+    <div class="row g-3" id="forms-grid"></div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="idari.js"></script>
+<script>
+initLang();
+
+function renderForms() {
+  const l = getLang();
+  const t = T[l];
+  const src = l === 'ar' ? forms_ar : forms;
+  const q = (document.getElementById('form-search')?.value || '').toLowerCase();
+  const filtered = src.filter(f => !q || f.title.toLowerCase().includes(q) || f.org.toLowerCase().includes(q));
+  const grid = document.getElementById('forms-grid');
+  if (!filtered.length) {
+    grid.innerHTML = `<div class="col-12"><p class="text-muted">${l==='fr'?'Aucun formulaire trouvé.':'لم يُعثر على استمارة.'}</p></div>`;
+    return;
+  }
+  grid.innerHTML = filtered.map(f => `
+    <div class="col-sm-6 col-lg-4 fade-up">
+      <div class="form-card">
+        <div class="form-icon">${f.icon}</div>
+        <div class="form-info">
+          <div class="form-title">${f.title}</div>
+          <div class="form-meta">${f.org} · ${f.size}</div>
+        </div>
+        <button class="btn-dl" onclick="dlForm('${f.url}','${f.title}')">${t.dlBtn}</button>
+      </div>
+    </div>`).join('');
+}
+
+function dlForm(url, title) {
+  const l = getLang();
+  showToast(T[l].toastDl);
+  setTimeout(() => window.open(url, '_blank'), 800);
+}
+
+function applyLang(l) {
+  const t = T[l];
+  document.title = t.formsTitle + ' — إداري Idari';
+  document.getElementById('bc-home').textContent    = t.breadHome;
+  document.getElementById('bc-current').textContent = t.formsTitle;
+  document.getElementById('ph-tag').textContent     = t.formsTag;
+  document.getElementById('ph-title').textContent   = t.formsTitle;
+  document.getElementById('ph-desc').textContent    = t.formsSub;
+  const s = document.getElementById('form-search');
+  if (s) s.placeholder = l==='fr'?'Rechercher un formulaire…':'ابحث عن استمارة…';
+  document.getElementById('nav-placeholder').innerHTML    = buildNav('forms');
+  document.getElementById('footer-placeholder').innerHTML = buildFooter();
+  const langToggle = document.getElementById('lang-toggle');
+  if (langToggle) langToggle.textContent = l === 'fr' ? 'عربي' : 'Français';
+  renderForms();
+}
+
+applyLang(getLang());
+</script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إداري Idari — Guide Administratif Maroc</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7 fade-up">
+        <div class="section-tag mb-3" id="hero-tag">🇲🇦 Guide Officiel Maroc</div>
+        <h1 class="hero-title mb-3" id="hero-title">Simplifiez vos <em>démarches administratives</em></h1>
+        <p class="hero-sub mb-4" id="hero-sub">Guides étape par étape, listes de documents, localisateur de bureaux et formulaires officiels — tout ce dont vous avez besoin.</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="#categories" class="btn-idari-primary" id="hero-btn-main">Explorer les procédures →</a>
+          <a href="offices.html" class="btn-idari-secondary" id="hero-btn-sec">Trouver un bureau</a>
+        </div>
+      </div>
+      <div class="col-lg-5 d-none d-lg-flex justify-content-center fade-up fade-up-d2">
+        <div style="font-size:7rem;text-align:center;line-height:1">
+          🇲🇦
+          <div style="font-size:1.1rem;font-weight:600;color:var(--ink-mid);margin-top:.5rem;font-family:var(--font-display)">المملكة المغربية</div>
+          <div style="font-size:.85rem;color:var(--ink-muted)">Royaume du Maroc</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stats-wrap fade-up fade-up-d3">
+      <div class="row g-4 text-center text-lg-start">
+        <div class="col-4 col-lg-auto me-lg-5">
+          <div class="hero-stat-num">14+</div>
+          <div class="hero-stat-label" id="stat-procs">Procédures</div>
+        </div>
+        <div class="col-4 col-lg-auto me-lg-5">
+          <div class="hero-stat-num">5</div>
+          <div class="hero-stat-label" id="stat-orgs">Catégories</div>
+        </div>
+        <div class="col-4 col-lg-auto">
+          <div class="hero-stat-num">40+</div>
+          <div class="hero-stat-label" id="stat-offices">Bureaux</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="py-5" id="categories">
+  <div class="container">
+    <div class="text-center mb-5 fade-up">
+      <div class="section-tag" id="cats-tag">Démarches</div>
+      <h2 class="mt-2 mb-2" id="cats-title">Catégories</h2>
+      <p class="text-muted" id="cats-sub">Sélectionnez une catégorie pour accéder aux guides détaillés.</p>
+    </div>
+    <div class="row g-4" id="cats-grid">
+      <!-- rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="py-5" style="background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="text-center mb-4 fade-up">
+      <div class="section-tag green" id="how-tag">Comment ça marche</div>
+    </div>
+    <div class="row g-4 text-center">
+      <div class="col-md-4 fade-up fade-up-d1">
+        <div style="font-size:2rem;margin-bottom:.75rem">📂</div>
+        <h5 style="font-family:var(--font-display)" id="how1-title">Choisissez une procédure</h5>
+        <p class="text-muted" style="font-size:.87rem" id="how1-desc">Parcourez nos 5 catégories et sélectionnez la démarche qui vous concerne.</p>
+      </div>
+      <div class="col-md-4 fade-up fade-up-d2">
+        <div style="font-size:2rem;margin-bottom:.75rem">✅</div>
+        <h5 style="font-family:var(--font-display)" id="how2-title">Préparez vos documents</h5>
+        <p class="text-muted" style="font-size:.87rem" id="how2-desc">Cochez les documents requis au fur et à mesure que vous les préparez.</p>
+      </div>
+      <div class="col-md-4 fade-up fade-up-d3">
+        <div style="font-size:2rem;margin-bottom:.75rem">🏛</div>
+        <h5 style="font-family:var(--font-display)" id="how3-title">Rendez-vous au bureau</h5>
+        <p class="text-muted" style="font-size:.87rem" id="how3-desc">Localisez le bureau le plus proche et suivez les étapes du guide.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK LINKS -->
+<section class="py-5">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-md-4 fade-up">
+        <a href="offices.html" class="cat-card text-decoration-none">
+          <div class="cat-icon ci-green">🗺</div>
+          <h4 id="ql1-title">Localisateur de bureaux</h4>
+          <p id="ql1-desc">Trouvez CNSS, ANAPEC, préfectures et gares ONCF dans votre ville.</p>
+        </a>
+      </div>
+      <div class="col-md-4 fade-up fade-up-d1">
+        <a href="forms.html" class="cat-card text-decoration-none">
+          <div class="cat-icon ci-gold">📋</div>
+          <h4 id="ql2-title">Formulaires à télécharger</h4>
+          <p id="ql2-desc">Accédez aux formulaires officiels pour toutes vos démarches.</p>
+        </a>
+      </div>
+      <div class="col-md-4 fade-up fade-up-d2">
+        <a href="faq.html" class="cat-card text-decoration-none">
+          <div class="cat-icon ci-red">❓</div>
+          <h4 id="ql3-title">Questions fréquentes</h4>
+          <p id="ql3-desc">Réponses aux questions les plus posées sur les démarches administratives.</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="idari.js"></script>
+<script>
+initLang();
+
+function applyLang(l) {
+  const t = T[l];
+  document.getElementById('hero-tag').textContent    = t.heroTag;
+  document.getElementById('hero-title').innerHTML    = t.heroTitle;
+  document.getElementById('hero-sub').textContent    = t.heroSub;
+  document.getElementById('hero-btn-main').textContent = t.heroBtnMain;
+  document.getElementById('hero-btn-sec').textContent  = t.heroBtnSec;
+  document.getElementById('stat-procs').textContent  = t.statProcs;
+  document.getElementById('stat-orgs').textContent   = t.statOrgs;
+  document.getElementById('stat-offices').textContent= t.statOffices;
+  document.getElementById('cats-tag').textContent    = t.catsTag;
+  document.getElementById('cats-title').textContent  = t.catsTitle;
+  document.getElementById('cats-sub').textContent    = t.catsSub;
+
+  const howLabels = {
+    fr:{ tag:"Comment ça marche",
+         t1:"Choisissez une procédure",d1:"Parcourez nos 5 catégories et sélectionnez la démarche qui vous concerne.",
+         t2:"Préparez vos documents",d2:"Cochez les documents requis au fur et à mesure que vous les préparez.",
+         t3:"Rendez-vous au bureau",d3:"Localisez le bureau le plus proche et suivez les étapes du guide.",
+         ql1t:"Localisateur de bureaux",ql1d:"Trouvez CNSS, ANAPEC, préfectures et gares ONCF dans votre ville.",
+         ql2t:"Formulaires à télécharger",ql2d:"Accédez aux formulaires officiels pour toutes vos démarches.",
+         ql3t:"Questions fréquentes",ql3d:"Réponses aux questions les plus posées sur les démarches administratives."},
+    ar:{ tag:"كيف يعمل هذا الدليل",
+         t1:"اختر إجراءك",d1:"تصفح الفئات الخمس واختر الإجراء الذي يهمك.",
+         t2:"جهّز وثائقك",d2:"ضع علامة على الوثائق المطلوبة كلما أعددتها.",
+         t3:"توجه إلى المكتب",d3:"حدد أقرب مكتب واتبع خطوات الدليل.",
+         ql1t:"محدد المكاتب",ql1d:"ابحث عن CNSS وANAPEC والمقاطعات ومحطات ONCF في مدينتك.",
+         ql2t:"تحميل الاستمارات",ql2d:"الوصول إلى الاستمارات الرسمية لجميع إجراءاتك.",
+         ql3t:"الأسئلة الشائعة",ql3d:"إجابات على أكثر الأسئلة تداولاً حول الإجراءات الإدارية."}
+  };
+  const hw = howLabels[l];
+  document.getElementById('how-tag').textContent  = hw.tag;
+  document.getElementById('how1-title').textContent= hw.t1;
+  document.getElementById('how1-desc').textContent = hw.d1;
+  document.getElementById('how2-title').textContent= hw.t2;
+  document.getElementById('how2-desc').textContent = hw.d2;
+  document.getElementById('how3-title').textContent= hw.t3;
+  document.getElementById('how3-desc').textContent = hw.d3;
+  document.getElementById('ql1-title').textContent = hw.ql1t;
+  document.getElementById('ql1-desc').textContent  = hw.ql1d;
+  document.getElementById('ql2-title').textContent = hw.ql2t;
+  document.getElementById('ql2-desc').textContent  = hw.ql2d;
+  document.getElementById('ql3-title').textContent = hw.ql3t;
+  document.getElementById('ql3-desc').textContent  = hw.ql3d;
+
+  const langToggle = document.getElementById('lang-toggle');
+  if (langToggle) langToggle.textContent = l === 'fr' ? 'عربي' : 'Français';
+
+  renderCats(l);
+  document.getElementById('nav-placeholder').innerHTML   = buildNav('index');
+  document.getElementById('footer-placeholder').innerHTML= buildFooter();
+}
+
+function renderCats(l) {
+  const grid = document.getElementById('cats-grid');
+  const counts = {civil:4, business:3, education:2, transport:2, social:3};
+  const links  = {civil:'civil', business:'business', education:'education', transport:'transport', social:'social'};
+  grid.innerHTML = Object.entries(catMeta).map(([key, m], i) => {
+    const d = m[l];
+    return `
+    <div class="col-sm-6 col-lg-4 fade-up" style="animation-delay:${i*.08}s">
+      <a href="pages/${links[key]}.html" class="cat-card text-decoration-none d-flex flex-column">
+        <div class="cat-icon ${m.colorClass} mb-3">${m.icon}</div>
+        <h4>${d.label}</h4>
+        <p>${d.desc}</p>
+        <div class="cat-card-count mt-auto">${counts[key]} ${T[l].statProcs}</div>
+      </a>
+    </div>`;
+  }).join('');
+}
+
+applyLang(getLang());
+</script>
+</body>
+</html>

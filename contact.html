@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — إداري Idari</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="nav-placeholder"></div>
+
+<div class="idari-breadcrumb">
+  <div class="container">
+    <a href="index.html" id="bc-home">Accueil</a>
+    <span class="sep">›</span>
+    <span class="current" id="bc-current">Contact</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-icon">✉️</div>
+    <div class="section-tag mb-2" id="ph-tag">Contact</div>
+    <h1 id="ph-title">Nous contacter</h1>
+    <p id="ph-desc">Notre équipe répond dans les 24h. Pour les urgences, contactez directement les organismes compétents.</p>
+  </div>
+</div>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4 justify-content-center">
+
+      <!-- FORM -->
+      <div class="col-lg-6">
+        <div class="contact-card">
+          <h4 class="mb-4" id="form-heading" style="font-family:var(--font-display)">Envoyer un message</h4>
+          <div class="mb-3">
+            <label class="form-label-custom" id="lbl-name">Votre nom</label>
+            <input type="text" class="form-control-custom" id="inp-name" placeholder="Ahmed Benali">
+          </div>
+          <div class="mb-3">
+            <label class="form-label-custom" id="lbl-email">Email</label>
+            <input type="email" class="form-control-custom" id="inp-email" placeholder="ahmed@example.com">
+          </div>
+          <div class="mb-3">
+            <label class="form-label-custom" id="lbl-subject">Sujet</label>
+            <select class="form-control-custom" id="inp-subject"></select>
+          </div>
+          <div class="mb-4">
+            <label class="form-label-custom" id="lbl-msg">Message</label>
+            <textarea class="form-control-custom" id="inp-msg" rows="5" placeholder="Décrivez votre question…"></textarea>
+          </div>
+          <button class="btn-idari-primary w-100 justify-content-center" id="btn-send" onclick="sendMsg()">Envoyer le message</button>
+        </div>
+      </div>
+
+      <!-- INFO CARDS -->
+      <div class="col-lg-4">
+        <div class="d-flex flex-column gap-3">
+
+          <div class="contact-card">
+            <h6 class="mb-3" style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)" id="ci1-title">Urgences administratives</h6>
+            <div class="office-row"><span>📞</span><span>3355 (Portail Chikaya)</span></div>
+            <div class="office-row"><span>🌐</span><span>portail.gov.ma</span></div>
+          </div>
+
+          <div class="contact-card">
+            <h6 class="mb-3" style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)" id="ci2-title">Organismes principaux</h6>
+            <div class="office-row"><span>🏛</span><span>CNSS — cnss.ma</span></div>
+            <div class="office-row"><span>💼</span><span>ANAPEC — anapec.org</span></div>
+            <div class="office-row"><span>🚂</span><span>ONCF — oncf.ma</span></div>
+            <div class="office-row"><span>📄</span><span>CRI — cri.ma</span></div>
+          </div>
+
+          <div class="contact-card">
+            <h6 class="mb-3" style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red)" id="ci3-title">Horaires des bureaux</h6>
+            <div class="office-row"><span>🕘</span><span id="ci3-hours1">Lun–Ven : 08h30 – 16h30</span></div>
+            <div class="office-row"><span>📅</span><span id="ci3-hours2">Ramadan : horaires réduits</span></div>
+            <div class="office-row"><span>⚠️</span><span id="ci3-note">Jours fériés : bureaux fermés</span></div>
+          </div>
+
+          <div class="contact-card" style="background:var(--red-light);border-color:rgba(192,57,43,.2)">
+            <h6 class="mb-2" style="font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--red-dark)" id="ci4-title">Signaler une corruption</h6>
+            <p style="font-size:.82rem;color:var(--red-dark);margin:0" id="ci4-desc">Ne payez jamais de montants non officiels. Signalez via le numéro vert :</p>
+            <div class="mt-2" style="font-size:.95rem;font-weight:700;color:var(--red)">0774-29-6085</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-placeholder"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="idari.js"></script>
+<script>
+initLang();
+
+function sendMsg() {
+  const l = getLang();
+  showToast(T[l].toastMsg);
+}
+
+function applyLang(l) {
+  const t = T[l];
+  document.title = t.contactTitle + ' — إداري Idari';
+  document.getElementById('bc-home').textContent    = t.breadHome;
+  document.getElementById('bc-current').textContent = t.contactTag;
+  document.getElementById('ph-tag').textContent     = t.contactTag;
+  document.getElementById('ph-title').textContent   = t.contactTitle;
+  document.getElementById('ph-desc').textContent    = t.contactSub;
+  document.getElementById('form-heading').textContent= l==='fr'?'Envoyer un message':'إرسال رسالة';
+  document.getElementById('lbl-name').textContent   = t.contactName;
+  document.getElementById('lbl-email').textContent  = t.contactEmail;
+  document.getElementById('lbl-subject').textContent= t.contactSubject;
+  document.getElementById('lbl-msg').textContent    = t.contactMsg;
+  document.getElementById('btn-send').textContent   = t.contactSend;
+  document.getElementById('inp-name').placeholder   = l==='fr'?'Ahmed Benali':'أحمد بنعلي';
+  document.getElementById('inp-msg').placeholder    = l==='fr'?'Décrivez votre question…':'صِف سؤالك…';
+
+  const sel = document.getElementById('inp-subject');
+  sel.innerHTML = t.contactSubjects.map(s=>`<option>${s}</option>`).join('');
+
+  const labels = {
+    fr:{c1:'Urgences administratives',c2:'Organismes principaux',c3:'Horaires des bureaux',h1:'Lun–Ven : 08h30 – 16h30',h2:'Ramadan : horaires réduits',note:'Jours fériés : bureaux fermés',c4:'Signaler une corruption',c4d:"Ne payez jamais de montants non officiels. Signalez via le numéro vert :"},
+    ar:{c1:'طوارئ إدارية',c2:'الجهات الرئيسية',c3:'أوقات عمل المكاتب',h1:'الإثنين–الجمعة: 08:30 – 16:30',h2:'رمضان: مواعيد مقلّصة',note:'أيام العطل: المكاتب مغلقة',c4:'الإبلاغ عن الرشوة',c4d:'لا تدفع أي مبلغ غير رسمي. أبلغ عبر الرقم المجاني:'}
+  };
+  const lb = labels[l];
+  document.getElementById('ci1-title').textContent = lb.c1;
+  document.getElementById('ci2-title').textContent = lb.c2;
+  document.getElementById('ci3-title').textContent = lb.c3;
+  document.getElementById('ci3-hours1').textContent= lb.h1;
+  document.getElementById('ci3-hours2').textContent= lb.h2;
+  document.getElementById('ci3-note').textContent  = lb.note;
+  document.getElementById('ci4-title').textContent = lb.c4;
+  document.getElementById('ci4-desc').textContent  = lb.c4d;
+
+  document.getElementById('nav-placeholder').innerHTML    = buildNav('contact');
+  document.getElementById('footer-placeholder').innerHTML = buildFooter();
+  const langToggle = document.getElementById('lang-toggle');
+  if (langToggle) langToggle.textContent = l === 'fr' ? 'عربي' : 'Français';
+}
+
+applyLang(getLang());
+</script>
+</body>
+</html>
